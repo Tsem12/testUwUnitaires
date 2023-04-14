@@ -3,14 +3,14 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
 {
     /// <summary>
     /// Défintion simple d'un équipement apportant des boost de stats
+    public enum EquipementType
+    {
+        None,
+        AttackPriority
+    };
     /// </summary>
     public class Equipment
     {
-        public enum EquipementType
-        {
-            None,
-            AttackPriority
-        };
 
         private int _bonusHealth;
         private int _bonusAttack;
@@ -32,10 +32,10 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             BonusDefense = bonusDefense;
             BonusSpeed = bonusSpeed;
             BonusHealth = bonusHealth;
-            Etype = equipement;
+            EType = equipement;
         }
 
-        public EquipementType Etype { get => _eType; protected set => _eType = value; }
+        public EquipementType EType { get => _eType; protected set => _eType = value; }
         public int BonusHealth { get => _bonusHealth; protected set => _bonusHealth = value; }
         public int BonusAttack { get => _bonusAttack; protected set => _bonusAttack = value; }
         public int BonusDefense { get => _bonusDefense; protected set => _bonusDefense = value; }

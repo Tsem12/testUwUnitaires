@@ -44,12 +44,28 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
         }
 
         [Test]
-
-        public void NoMorePrioriryAttackOnEquipementRemove()
+        [TestCase(2, 5)]
+        public void PrioriryAttackOnProrityEquipement(int p1Speed, int p2Speed)
         {
-            Character c = new Character(100, 10, 10, 1, TYPE.NONE);
-            c.Equip(new Equipment(10, 10, 10, 10, Equipment.EquipementType.AttackPriority));
-            c.Unequip();
+            Character p1 = new Character(100, 10, 10, p1Speed, TYPE.NONE);
+            Character p2 = new Character(100, 10, 10, p2Speed, TYPE.NONE);
+            p1.Equip(new Equipment(0, 0, 0, 0, EquipementType.AttackPriority));
+            Fight fight = new Fight(p1, p2);
+
+            Assert.That(fight.IsPriority(p1, p2));
+        }
+
+        [Test]
+        [TestCase(2, 5)]
+        public void NoMorePrioriryAttackOnPriorityEquipementRemove(int p1Speed, int p2Speed)
+        {
+            Character p1 = new Character(100, 10, 10, p1Speed, TYPE.NONE);
+            Character p2 = new Character(100, 10, 10, p2Speed, TYPE.NONE);
+            p1.Equip(new Equipment(0, 0, 0, 0, EquipementType.AttackPriority));
+            p1.Unequip();
+            Fight fight = new Fight(p1, p2);
+
+            Assert.That(!fight.IsPriority(p1, p2));
         }
     }
 
