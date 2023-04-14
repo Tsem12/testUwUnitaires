@@ -71,6 +71,8 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
       };
         public static float GetFactor(TYPE attacker, TYPE receiver)
         {
+            if (attacker == TYPE.NONE || receiver == TYPE.NONE)
+                throw new ArgumentException("Type cannot be None", "Attacker or Receiver");
             float effectiveness = 1f;
 
             effectiveness *= _typeChart[(int)attacker, (int)receiver];

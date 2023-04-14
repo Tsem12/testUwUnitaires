@@ -69,6 +69,39 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
 
             Assert.That(fight.IsPriority(fight.Character1, fight.Character2) == expected);
         }
+
+
+        [Test]
+        [TestCase(TYPE.FIRE, TYPE.WATER, 0.5f)]
+        [TestCase(TYPE.FIRE, TYPE.ELECTRIC, 1f)]
+        [TestCase(TYPE.FIRE, TYPE.GRASS, 2f)]
+        [TestCase(TYPE.BUG, TYPE.FIRE, 0.5f)]
+        [TestCase(TYPE.STEEL, TYPE.FIGHTING, 1f)]
+        [TestCase(TYPE.GROUND, TYPE.ELECTRIC, 2f)]
+        public void TypeFactorMulitiplicator(TYPE attacker, TYPE receiver, float expected)
+        {
+            Assert.That(TypeResolver.GetFactor(attacker, receiver) == expected);
+        }
+
+        [Test]
+        [TestCase(TYPE.NONE, TYPE.DARK)]
+        [TestCase(TYPE.NONE, TYPE.NONE)]
+        [TestCase(TYPE.FIRE, TYPE.NONE)]
+        public void TypeFactorNotNoneORNone(TYPE attacker, TYPE receiver)
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var result = TypeResolver.GetFactor(attacker, receiver);
+            });
+        }
+
+
+        [Test]
+
+        public void SleepStatus()
+        {
+
+        }
     }
 
 }
