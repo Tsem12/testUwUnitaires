@@ -110,8 +110,10 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             modifier = TypeResolver.GetFactor(attacker.BaseType, this.BaseType) * TypeResolver.GetSTAB(attacker.BaseType, attacker.CurrentAttack.Type);
             damage = Mathf.FloorToInt(((attacker.CurrentAttack.Power * (attacker.Attack / this.Defense)) / 50) * modifier);
             CurrentHealth -= damage;
-            if (attacker.CurrentAttack.Status != StatusPotential.NONE)
+            if (attacker.CurrentAttack.Status != StatusPotential.NONE) {
                 CurrentStatus = StatusEffect.GetNewStatusEffect(attacker.CurrentAttack.Status);
+                Debug.Log("Status : " + CurrentStatus.Status);
+            }
             Debug.Log("Damage : " + damage + " Health : " + CurrentHealth);
             if (CurrentHealth < 0)
                 CurrentHealth = 0;
