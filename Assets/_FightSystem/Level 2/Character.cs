@@ -97,20 +97,27 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             if (CurrentHealth < 0)
                 CurrentHealth = 0;
         }
-        /// <summary>
-        /// Equipe un objet au personnage
-        /// </summary>
-        /// <param name="newEquipment">equipement a appliquer</param>
-        /// <exception cref="ArgumentNullException">Si equipement est null</exception>
+
+        public void Heal(int amount)
+        {
+            CurrentHealth += amount;
+            if (CurrentHealth > MaxHealth)
+                CurrentHealth = MaxHealth;
+        }
+        
+        public void ChangeHPStats(int newMaxHealth)
+        {
+            _baseHealth = newMaxHealth + (_currentEquipement != null ? CurrentEquipment.BonusHealth : 0);
+            if (CurrentHealth > MaxHealth)
+                CurrentHealth = MaxHealth;
+        }
         public void Equip(Equipment newEquipment)
         {
             if (newEquipment == null)
                 throw new ArgumentNullException(nameof(newEquipment));
             CurrentEquipment = newEquipment;
         }
-        /// <summary>
-        /// Desequipe l'objet en cours au personnage
-        /// </summary>
+        
         public void Unequip()
         {
             CurrentEquipment = null;
