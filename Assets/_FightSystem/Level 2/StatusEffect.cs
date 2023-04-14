@@ -4,7 +4,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     /// <summary>
     /// Enum des status de chaque attaque (voir plus bas)
     /// </summary>
-    public enum StatusPotential { NONE, SLEEP, BURN, CRAZY }
+    public enum StatusPotential { NONE, SLEEP, BURN, CRAZY, POISON }
     
     public class StatusEffect
     {
@@ -23,6 +23,8 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
                     return new BurnStatus();
                 case StatusPotential.CRAZY:
                     return new CrazyStatus();
+                case StatusPotential.POISON:
+                    return new PoisonStatus();
                 case StatusPotential.NONE:
                 default:
                     return null;
@@ -41,8 +43,10 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             DamageEachTurn = damageEachTurn;
             DamageOnAttack = damageOnAttack;
             CanAttack = canAttack;
+            Status = StatusPotential.NONE;
         }
 
+        public StatusPotential Status { get; protected set; }
         /// <summary>
         /// Nombre de tour de l'effet
         /// </summary>
@@ -72,7 +76,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
 
         public virtual int EffectOnAttack(int maxHealth)
         {
-            return (int)(maxHealth * DamageEachTurn);
+            return (int)(maxHealth * DamageOnAttack);
         }
 
         public virtual int DamageEndTurn()
@@ -93,7 +97,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     {
         public SleepStatus() : base(5, 0, false, 0f)
         {
-            
+            Status = StatusPotential.SLEEP;
         }
     }
 
@@ -102,9 +106,9 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     /// </summary>
     public class BurnStatus : StatusEffect
     {
-        public BurnStatus() : base(5, 10, true, 1/8)
+        public BurnStatus() : base(5, 10, true, 1/12)
         {
-
+            Status = StatusPotential.BURN;
         }
     }
 
@@ -115,9 +119,15 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     {
         public CrazyStatus() : base(1, 0, false, 0.3f)
         {
-
+            Status = StatusPotential.CRAZY;
         }
-
     }
 
+    public class PoisonStatus : StatusEffect
+    {
+        public PoisonStatus() : base(8, 10, true, 1 / 16)
+        {
+            Status = StatusPotential.POISON;
+        }
+    }
 }
