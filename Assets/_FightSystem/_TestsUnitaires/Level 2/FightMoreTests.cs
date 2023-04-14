@@ -42,6 +42,15 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
 
             Assert.That(c.CurrentHealth <= c.MaxHealth);
         }
+
+        [Test]
+
+        public void NoMorePrioriryAttackOnEquipementRemove()
+        {
+            Character c = new Character(100, 10, 10, 1, TYPE.NONE);
+            c.Equip(new Equipment(10, 10, 10, 10, Equipment.EquipementType.AttackPriority));
+            c.Unequip();
+        }
     }
 
 }

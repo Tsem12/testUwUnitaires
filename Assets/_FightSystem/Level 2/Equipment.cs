@@ -16,7 +16,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         private int _bonusAttack;
         private int _bonusDefense;
         private int _bonusSpeed;
-        private EquipementType _equipement;
+        private EquipementType _eType = EquipementType.None;
 
         public Equipment(int bonusHealth, int bonusAttack, int bonusDefense, int bonusSpeed)
         {
@@ -32,10 +32,10 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             BonusDefense = bonusDefense;
             BonusSpeed = bonusSpeed;
             BonusHealth = bonusHealth;
-            Equipement = equipement;
+            Etype = equipement;
         }
 
-        public EquipementType Equipement { get => _equipement; protected set => _equipement = value; }
+        public EquipementType Etype { get => _eType; protected set => _eType = value; }
         public int BonusHealth { get => _bonusHealth; protected set => _bonusHealth = value; }
         public int BonusAttack { get => _bonusAttack; protected set => _bonusAttack = value; }
         public int BonusDefense { get => _bonusDefense; protected set => _bonusDefense = value; }
