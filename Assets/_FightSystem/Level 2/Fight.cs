@@ -54,7 +54,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             if (attacker.CurrentStatus != null)
                 canAttack = attacker.CurrentStatus.BeginTurn();
             if (canAttack)
-                defender.ReceiveAttack(attacker.CurrentAttack, attacker.Attack);
+                defender.ReceiveAttack(attacker);
                 if (attacker.CurrentStatus != null)
                     attacker.CurrentStatus.EffectOnAttack(attacker.MaxHealth);
             if (first && defender.IsAlive)
@@ -63,7 +63,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
                 attacker.CurrentStatus.DamageEndTurn();
                 attacker.CurrentStatus.EndTurn();
             }
-            if (attacker.CurrentStatus.RemainingTurn == 0)
+            if (attacker.CurrentStatus != null && attacker.CurrentStatus.RemainingTurn == 0)
                 attacker.CureStatus();
         }
     }

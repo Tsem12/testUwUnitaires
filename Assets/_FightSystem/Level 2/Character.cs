@@ -78,7 +78,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
 
             if (s == null)
                 throw new ArgumentNullException(nameof(s));
-            damage = (s.Power - this.Defense) < 0 ? 0 : (s.Power - this.Defense);
+            damage = (s.Power - this.Defense) < 0 ? 1 : (s.Power - this.Defense);
             CurrentHealth -= damage;
             Debug.Log("Damage : " + damage + " Health : " + CurrentHealth);
             if (CurrentHealth < 0)
@@ -91,10 +91,25 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
 
             if (s == null)
                 throw new ArgumentNullException(nameof(s));
-            damage = (s.Power * (int)(attack / this.Defense ));
+            damage = Mathf.FloorToInt((s.Power * (attack / this.Defense)) / 50);
             CurrentHealth -= damage;
             if (s.Status != StatusPotential.NONE)
                 CurrentStatus = StatusEffect.GetNewStatusEffect(s.Status);
+            Debug.Log("Damage : " + damage + " Health : " + CurrentHealth);
+            if (CurrentHealth < 0)
+                CurrentHealth = 0;
+        }
+
+        public void ReceiveAttack(Character attacker)
+        {
+            int damage = 0;
+            float modifier = 0;
+
+            if (attacker == null)
+                throw new ArgumentNullException(nameof(attacker));
+            modifier = TypeResolver.GetFactor(attacker.BaseType, this.BaseType) * TypeResolver.GetSTAB(attacker.BaseType, attacker.CurrentAttack.Type);
+            damage = Mathf.FloorToInt(((attacker.CurrentAttack.Power * (attacker.Attack / this.Defense)) / 50) * modifier);
+            CurrentHealth -= damage;
             Debug.Log("Damage : " + damage + " Health : " + CurrentHealth);
             if (CurrentHealth < 0)
                 CurrentHealth = 0;
