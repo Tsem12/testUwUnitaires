@@ -97,10 +97,33 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
 
 
         [Test]
-
-        public void SleepStatus()
+        public void GetStatus()
         {
+            Character p1 = new Character(10, 10, 10, 10, TYPE.NORMAL);
+            Character p2 = new Character(10, 10, 10, 10, TYPE.NORMAL);
 
+            p2.CurrentAttack = new FireBall();
+
+            p1.ReceiveAttack(p2);
+
+            //Assert.That(p1.CurrentStatus == StatusPotential.BURN);
+        }
+
+
+        [Test]
+        public void CheckBurnEffect()
+        {
+            Character p1 = new Character(1000, 30, 20, 10, TYPE.NORMAL);
+            Character p2 = new Character(1000, 30, 20, 10, TYPE.NORMAL);
+
+            p1.CurrentAttack = new FireBall();
+            p2.CurrentAttack = new FireBall();
+
+            Fight fight = new Fight(p1, p2);
+            fight.PlayAttack(p1, p2, true);
+
+
+            Assert.That(p2.CurrentHealth == 985);
         }
     }
 
