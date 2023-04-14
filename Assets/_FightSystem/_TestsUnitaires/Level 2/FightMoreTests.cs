@@ -27,7 +27,7 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
         public void CantHealMoreThanMaxHp(int healValue, int maxHeal)
         {
             Character c = new Character(maxHeal, 10, 10, 1, TYPE.NONE);
-            //c.Heal(healValue);
+            c.Heal(healValue);
 
             Assert.That(c.CurrentHealth <= c.MaxHealth);
         }
@@ -38,7 +38,7 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
         public void HpCannotBeyondMaxHp(int maxHeal, int newMaxHeal)
         {
             Character c = new Character(maxHeal, 10, 10, 1, TYPE.NONE);
-            //c.ChangeHPStats(newMaxHeal);
+            c.ChangeHPStats(newMaxHeal);
 
             Assert.That(c.CurrentHealth <= c.MaxHealth);
         }

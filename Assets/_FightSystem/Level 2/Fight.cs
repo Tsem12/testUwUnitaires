@@ -32,10 +32,19 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         {
             Character1.CurrentAttack = skillFromCharacter1;
             Character2.CurrentAttack = skillFromCharacter2;
-            if (Character1.Speed > Character2.Speed)
+            if (IsPriority(Character1, Character2))
                 PlayAttack(Character1, Character2, true);
             else
                 PlayAttack(Character2, Character1, true);
+        }
+
+        public bool IsPriority(Character attacker, Character defender)
+        {
+            if (attacker.Speed > defender.Speed)
+                return true;
+            else if (attacker.CurrentEquipment.EType == EquipementType.AttackPriority)
+                return true;
+            return false;
         }
 
         public void PlayAttack(Character attacker, Character defender, bool first)
