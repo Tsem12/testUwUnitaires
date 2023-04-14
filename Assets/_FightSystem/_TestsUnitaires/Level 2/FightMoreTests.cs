@@ -44,20 +44,22 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
         }
 
         [Test]
-        [TestCase(2, 5)]
-        public void PrioriryAttackOnProrityEquipement(int p1Speed, int p2Speed)
+        [TestCase(2, 5, true)]
+        [TestCase(5, 2, true)]
+        public void PrioriryAttackOnProrityEquipement(int p1Speed, int p2Speed, bool expected)
         {
             Character p1 = new Character(100, 10, 10, p1Speed, TYPE.NONE);
             Character p2 = new Character(100, 10, 10, p2Speed, TYPE.NONE);
             p1.Equip(new Equipment(0, 0, 0, 0, EquipementType.AttackPriority));
             Fight fight = new Fight(p1, p2);
 
-            Assert.That(fight.IsPriority(p1, p2));
+            Assert.That(fight.IsPriority(fight.Character1, fight.Character2) == expected);
         }
 
         [Test]
-        [TestCase(2, 5)]
-        public void NoMorePrioriryAttackOnPriorityEquipementRemove(int p1Speed, int p2Speed)
+        [TestCase(2, 5, false)]
+        [TestCase(5, 2, true)]
+        public void NoMorePrioriryAttackOnPriorityEquipementRemove(int p1Speed, int p2Speed, bool expected)
         {
             Character p1 = new Character(100, 10, 10, p1Speed, TYPE.NONE);
             Character p2 = new Character(100, 10, 10, p2Speed, TYPE.NONE);
@@ -65,7 +67,7 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
             p1.Unequip();
             Fight fight = new Fight(p1, p2);
 
-            Assert.That(!fight.IsPriority(p1, p2));
+            Assert.That(fight.IsPriority(fight.Character1, fight.Character2) == expected);
         }
     }
 
