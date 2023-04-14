@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
 {
@@ -106,7 +107,7 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
 
             p1.ReceiveAttack(p2);
 
-            //Assert.That(p1.CurrentStatus == StatusPotential.BURN);
+            Assert.That(p1.CurrentStatus.Status == StatusPotential.BURN);
         }
 
 
@@ -122,8 +123,7 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
             Fight fight = new Fight(p1, p2);
             fight.PlayAttack(p1, p2, true);
 
-
-            Assert.That(p2.CurrentHealth == 985);
+            Assert.That(p2.MaxHealth - ( Mathf.FloorToInt(1/12) * p2.MaxHealth) - 7 == p2.CurrentHealth);
         }
     }
 

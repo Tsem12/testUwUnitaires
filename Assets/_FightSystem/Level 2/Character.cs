@@ -126,7 +126,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             if (attacker == null)
                 throw new ArgumentNullException(nameof(attacker));
             modifier = TypeResolver.GetFactor(attacker.BaseType, this.BaseType) * TypeResolver.GetSTAB(attacker.BaseType, attacker.CurrentAttack.Type);
-            damage = Mathf.FloorToInt(((attacker.CurrentAttack.Power * ((float)attacker.Attack / (float)this.Defense)) / 5) * modifier);
+            damage = Mathf.FloorToInt(((attacker.CurrentAttack.Power * ((float)attacker.Attack / (float)this.Defense)) / 10) * modifier);
             Debug.Log(damage);
             CurrentHealth -= damage;
             if (attacker.CurrentAttack.Status != StatusPotential.NONE) {
