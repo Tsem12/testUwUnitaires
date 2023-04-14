@@ -125,6 +125,38 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
 
             Assert.That(p2.MaxHealth - 5 - 7 == p2.CurrentHealth);
         }
+
+        [Test]
+        public void CheckSleepEffect()
+        {
+            Character p1 = new Character(1000, 30, 20, 10, TYPE.NORMAL);
+            Character p2 = new Character(1000, 30, 20, 10, TYPE.NORMAL);
+
+            p1.CurrentAttack = new SleepPowder();
+            p2.CurrentAttack = new FireBall();
+            int lifeBeforeHit = p1.CurrentHealth;
+
+            Fight fight = new Fight(p1, p2);
+            fight.PlayAttack(p1, p2, true);
+
+            Assert.That(lifeBeforeHit == p1.CurrentHealth);
+        }
+
+        [Test]
+        public void CheckCrazyEffect()
+        {
+            Character p1 = new Character(1000, 30, 20, 10, TYPE.NORMAL);
+            Character p2 = new Character(1000, 30, 20, 10, TYPE.NORMAL);
+
+            p1.CurrentAttack = new Supersonic();
+            p2.CurrentAttack = new FireBall();
+            int lifeBeforeHit = p1.CurrentHealth;
+
+            Fight fight = new Fight(p1, p2);
+            fight.PlayAttack(p1, p2, true);
+
+            Assert.That((float)(p2.MaxHealth * 0.7f) == p2.CurrentHealth);
+        }
     }
 
 }
