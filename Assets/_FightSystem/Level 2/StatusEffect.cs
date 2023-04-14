@@ -64,10 +64,25 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         /// Méthode enclenché par le système de combat à la fin de chaque tour
         /// Vous pouvez ajouter du contenu si besoin
         /// </summary>
+
+        public virtual bool BeginTurn()
+        {
+            return CanAttack;
+        }
+
+        public virtual int EffectOnAttack(int maxHealth)
+        {
+            return (int)(maxHealth * DamageEachTurn);
+        }
+
+        public virtual int DamageEndTurn()
+        {
+            return DamageEachTurn;
+        }
+
         public virtual void EndTurn()
         {
             RemainingTurn--;
-
         }
     }
 
@@ -78,7 +93,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     {
         public SleepStatus() : base(5, 0, false, 0f)
         {
-
+            
         }
     }
 
@@ -87,8 +102,9 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     /// </summary>
     public class BurnStatus : StatusEffect
     {
-        public BurnStatus() : base(5, 10, true, 0f)
+        public BurnStatus() : base(5, 10, true, 1/8)
         {
+
         }
     }
 
@@ -99,7 +115,9 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     {
         public CrazyStatus() : base(1, 0, false, 0.3f)
         {
+
         }
+
     }
 
 }

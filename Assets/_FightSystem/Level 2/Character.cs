@@ -93,14 +93,11 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
                 throw new ArgumentNullException(nameof(s));
             damage = (s.Power * (int)(attack / this.Defense ));
             CurrentHealth -= damage;
+            if (s.Status != StatusPotential.NONE)
+                CurrentStatus = StatusEffect.GetNewStatusEffect(s.Status);
             Debug.Log("Damage : " + damage + " Health : " + CurrentHealth);
             if (CurrentHealth < 0)
                 CurrentHealth = 0;
-        }
-
-        public void ApplyStatus(StatusPotential status)
-        {
-            CurrentStatus = StatusEffect.GetNewStatusEffect(status);
         }
 
         public void Heal(int amount)
@@ -110,6 +107,11 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
                 CurrentHealth = MaxHealth;
         }
         
+        public void CureStatus()
+        {
+            CurrentStatus = null;
+        }
+
         public void ChangeHPStats(int newMaxHealth)
         {
             _baseHealth = newMaxHealth + (_currentEquipement != null ? CurrentEquipment.BonusHealth : 0);
