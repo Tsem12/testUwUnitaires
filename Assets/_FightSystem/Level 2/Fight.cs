@@ -56,11 +56,11 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             if (canAttack)
                 defender.ReceiveAttack(attacker);
                 if (attacker.CurrentStatus != null)
-                    attacker.CurrenHealth -= attacker.CurrentStatus.EffectOnAttack(attacker.MaxHealth);
+                    attacker.ReceiveAttack(attacker.CurrentStatus.EffectOnAttack(attacker.MaxHealth));
             if (first && defender.IsAlive)
                 PlayAttack(defender, attacker, !first);
             if (attacker.CurrentStatus != null) {
-                attacker.CurrenHealth -= attacker.CurrentStatus.DamageEndTurn();
+                attacker.ReceiveAttack(attacker.CurrentStatus.DamageEndTurn());
                 attacker.CurrentStatus.EndTurn();
             }
             if (attacker.CurrentStatus != null && attacker.CurrentStatus.RemainingTurn == 0)

@@ -72,6 +72,24 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         /// </summary>
         /// <param name="s">skill attaquant</param>
         /// <exception cref="NotImplementedException"></exception>
+        public void ReceiveAttack(int amount)
+        {
+            if (amount < 0)
+                throw new ArgumentOutOfRangeException(nameof(amount));
+            CurrentHealth -= amount;
+            if (CurrentHealth < 0)
+                CurrentHealth = 0;
+        }
+
+        public void ReceiveAttack(float amount)
+        {
+            if (amount < 0)
+                throw new ArgumentOutOfRangeException(nameof(amount));
+            CurrentHealth -= Mathf.FloorToInt(amount);
+            if (CurrentHealth < 0)
+                CurrentHealth = 0;
+        }
+        
         public void ReceiveAttack(Skill s)
         {
             int damage = 0;
