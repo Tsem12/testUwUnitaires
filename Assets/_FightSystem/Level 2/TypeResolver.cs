@@ -6,7 +6,27 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     /// <summary>
     /// Définition des types dans le jeu
     /// </summary>
-    public enum TYPE { NORMAL, WATER, FIRE, GRASS }
+    public enum TYPE  {
+      NONE = -1,
+      NORMAL = 0,
+      FIRE = 1,
+      WATER = 2,
+      GRASS = 3,
+      ELECTRIC = 4,
+      ICE = 5,
+      FIGHTING = 6,
+      POISON = 7,
+      GROUND = 8,
+      FLY = 9,
+      PSY = 10,
+      BUG = 11,
+      ROCK = 12,
+      SPECTER = 13,
+      DRAGON = 14,
+      DARK = 15,
+      STEEL = 16,
+      FAIRY = 17,
+    };
 
     public class TypeResolver
     {
@@ -31,4 +51,50 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         }
 
     }
+}
+
+public static class PokemonType
+{
+    private static float[,] _typeChart = {
+                         /*Normal    Fire     Water   Grass   Electric    Ice    Fighting  Poison   Ground   Flying   Psychic   Bug      Rock    Ghost    Dragon    Dark    Steel    Fairy  */ // Defensive Type
+            /*Normal*/  {    1f   ,   1f   ,   1f   ,   1f   ,   1f    ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,  0.5f  ,   0f   ,   1f   ,   1f   ,  0.5f  ,   1f   },
+            /*Fire*/    {    1f   ,  0.5f  ,  0.5f  ,   2f   ,   1f    ,   2f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   2f   ,  0.5f  ,   1f   ,  0.5f  ,   1f   ,   2f   ,   1f   },
+            /*Water*/   {    1f   ,   2f   ,  0.5f  ,  0.5f  ,   1f    ,   1f   ,   1f   ,   1f   ,   2f   ,   1f   ,   1f   ,   1f   ,   2f   ,   1f   ,  0.5f  ,   1f   ,   1f   ,   1f   },
+            /*Grass*/   {    1f   ,  0.5f  ,   2f   ,  0.5f  ,   1f    ,   1f   ,   1f   ,  0.5f  ,   2f   ,  0.5f  ,   1f   ,  0.5f  ,   2f   ,   1f   ,  0.5f  ,   1f   ,  0.5f  ,   1f   },
+            /*Electric*/{    1f   ,   1f   ,   2f   ,  0.5f  ,  0.5f   ,   1f   ,   1f   ,   1f   ,   0f   ,   2f   ,   1f   ,   1f   ,   1f   ,   1f   ,  0.5f  ,   1f   ,   1f   ,   1f   },
+            /*Ice*/     {    1f   ,  0.5f  ,  0.5f  ,   2f   ,   1f    ,  0.5f  ,   1f   ,   1f   ,   2f   ,   2f   ,   1f   ,   1f   ,   1f   ,   1f   ,   2f   ,   1f   ,  0.5f  ,   1f   },
+            /*Fighting*/{    2f   ,   1f   ,   1f   ,   1f   ,   1f    ,   2f   ,   1f   ,  0.5f  ,   1f   ,  0.5f  ,  0.5f  ,  0.5f  ,   2f   ,   0f   ,   1f   ,   2f   ,   2f   ,  0.5f  },
+            /*Poison*/  {    1f   ,   1f   ,   1f   ,   2f   ,   1f    ,   1f   ,   1f   ,  0.5f  ,  0.5f  ,   1f   ,   1f   ,   1f   ,  0.5f  ,  0.5f  ,   1f   ,   1f   ,   0f   ,   2f   },
+            /*Ground*/  {    1f   ,   2f   ,   1f   ,  0.5f  ,   2f    ,   1f   ,   1f   ,   2f   ,   1f   ,   0f   ,   1f   ,  0.5f  ,   2f   ,   1f   ,   1f   ,   1f   ,   2f   ,   1f   },
+            /*Flying*/  {    1f   ,   1f   ,   1f   ,   2f   ,  0.5f   ,   1f   ,   2f   ,   1f   ,   1f   ,   1f   ,   1f   ,   2f   ,  0.5f  ,   1f   ,   1f   ,   1f   ,  0.5f  ,   1f   },
+            /*Psychic*/ {    1f   ,   1f   ,   1f   ,   1f   ,   1f    ,   1f   ,   2f   ,   2f   ,   1f   ,   1f   ,  0.5f  ,   1f   ,   1f   ,   1f   ,   1f   ,   0f   ,  0.5f  ,   1f   },
+            /*Bug*/     {    1f   ,  0.5f  ,   1f   ,   2f   ,   1f    ,   1f   ,  0.5f  ,  0.5f  ,   1f   ,  0.5f  ,   2f   ,   1f   ,   1f   ,  0.5f  ,   1f   ,   2f   ,  0.5f  ,  0.5f  },
+            /*Rock*/    {    1f   ,   2f   ,   1f   ,   1f   ,   1f    ,   2f   ,  0.5f  ,   1f   ,  0.5f  ,   2f   ,   1f   ,   2f   ,   1f   ,   1f   ,   1f   ,   1f   ,  0.5f  ,   1f   },
+            /*Ghost*/   {    0f   ,   1f   ,   1f   ,   1f   ,   1f    ,   1f   ,   0f   ,   1f   ,   1f   ,   1f   ,   2f   ,   1f   ,   1f   ,   2f   ,   1f   ,  0.5f  ,  0.5f  ,   1f   },
+            /*Dragon*/  {    1f   ,   1f   ,   1f   ,   1f   ,   1f    ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   2f   ,   1f   ,  0.5f  ,   0f   },
+            /*Dark*/    {    1f   ,   1f   ,   1f   ,   1f   ,   1f    ,   1f   ,  0.5f  ,   1f   ,   1f   ,   1f   ,   0f   ,   1f   ,   1f   ,   2f   ,   1f   ,  0.5f  ,  0.5f  ,  0.5f  },
+            /*Steel*/   {    1f   ,  0.5f  ,  0.5f  ,   1f   ,  0.5f   ,   2f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   2f   ,   1f   ,   1f   ,   1f   ,  0.5f  ,   2f   },
+            /*Fairy*/   {    1f   ,  0.5f  ,   1f   ,   1f   ,   1f    ,   1f   ,   2f   ,  0.5f  ,   1f   ,   1f   ,   2f   ,   1f   ,   1f   ,   1f   ,   2f   ,   2f   ,  0.5f  ,   1f   }
+            //Attacking Type
+      };
+
+      public static float GetEffectiveness(Type attackingType, Type[] defendingType)
+      {
+            float effectiveness = 1f;
+
+            foreach (Type dType in defendingType) {
+                  if (dType == Type.NONE)
+                        continue;
+                  effectiveness *= _typeChart[(int)attackingType, (int)dType];
+            }
+            return effectiveness;
+      }
+
+      public static float GetSTAB(Type Move, Type[] pokemon)
+      {
+            foreach (Type pType in pokemon)
+                  if (pType == Move)
+                        return 1.5f;
+            return 1f;
+      }
 }
