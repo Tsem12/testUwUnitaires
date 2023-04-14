@@ -42,7 +42,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         {
             if (character1.Speed > character2.Speed)
                 return true;
-            else if (character1.CurrentEquipement != null && character1.CurrentEquipment.EType == EquipementType.AttackPriority)
+            else if (character1.CurrentEquipment != null && character1.CurrentEquipment.EType == EquipementType.AttackPriority)
                 return true;
             return false;
         }
