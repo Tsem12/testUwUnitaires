@@ -38,11 +38,11 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
                 PlayAttack(Character2, Character1, true);
         }
 
-        public bool IsPriority(Character attacker, Character defender)
+        public bool IsPriority(Character character1, Character character2)
         {
-            if (attacker.Speed > defender.Speed)
+            if (character1.Speed > character2.Speed)
                 return true;
-            else if (attacker.CurrentEquipment.EType == EquipementType.AttackPriority)
+            else if (character1.CurrentEquipment != null && character1.CurrentEquipment.EType == EquipementType.AttackPriority)
                 return true;
             return false;
         }

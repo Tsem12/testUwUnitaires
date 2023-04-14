@@ -98,6 +98,11 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
                 CurrentHealth = 0;
         }
 
+        public void ApplyStatus(StatusPotential status)
+        {
+            CurrentStatus = StatusEffect.GetNewStatusEffect(status);
+        }
+
         public void Heal(int amount)
         {
             CurrentHealth += amount;
