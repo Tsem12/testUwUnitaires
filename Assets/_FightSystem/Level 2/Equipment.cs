@@ -6,15 +6,11 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     /// </summary>
     public class Equipment
     {
-<<<<<<< Updated upstream
-        
-=======
         private int _bonusHealth;
         private int _bonusAttack;
         private int _bonusDefense;
         private int _bonusSpeed;
 
->>>>>>> Stashed changes
         public Equipment(int bonusHealth, int bonusAttack, int bonusDefense, int bonusSpeed)
         {
             BonusAttack = bonusAttack;

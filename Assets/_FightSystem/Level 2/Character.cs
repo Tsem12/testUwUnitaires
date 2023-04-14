@@ -10,6 +10,8 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         int _baseSpeed;
         TYPE _baseType;
 
+        Equipment _currentEquipement;
+
         public Character(int baseHealth, int baseAttack, int baseDefense, int baseSpeed, TYPE baseType)
         {
             _baseHealth = baseHealth;
@@ -28,30 +30,33 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         /// HPMax, prendre en compte base et equipement potentiel
         /// </summary>
         public int MaxHealth {
-            get { return _baseHealth + CurrentEquipement != null ? CurrentEquipment.BonusHealth : 0; }
+            get { return _baseHealth + (_currentEquipement != null ? CurrentEquipment.BonusHealth : 0); }
         }
         /// <summary>
         /// ATK, prendre en compte base et equipement potentiel
         /// </summary>
         public int Attack {
-            get { return _baseAttack + CurrentEquipement != null ? CurrentEquipment.BonusAttack : 0; }
+            get { return _baseAttack + (_currentEquipement != null ? CurrentEquipment.BonusAttack : 0); }
         }
         /// <summary>
         /// DEF, prendre en compte base et equipement potentiel
         /// </summary>
         public int Defense {
-            get { return _baseDefense + CurrentEquipement != null ? CurrentEquipment.BonusDefense : 0; }
+            get { return _baseDefense + (_currentEquipement != null ? CurrentEquipment.BonusDefense : 0); }
         }
         /// <summary>
         /// SPE, prendre en compte base et equipement potentiel
         /// </summary>
         public int Speed {
-            get { return _baseSpeed + CurrentEquipement != null ? CurrentEquipment.BonusSpeed : 0; }
+            get { return _baseSpeed + (_currentEquipement != null ? CurrentEquipment.BonusSpeed : 0); }
         }
         /// <summary>
         /// Equipement unique du personnage
         /// </summary>
-        public Equipment CurrentEquipment { get; private set; }
+        public Equipment CurrentEquipment { 
+            get { return _currentEquipement; }
+            private set { _currentEquipement = value; }
+        }
         /// <summary>
         /// null si pas de status
         /// </summary>
