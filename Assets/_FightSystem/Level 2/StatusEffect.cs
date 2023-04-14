@@ -100,7 +100,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     /// </summary>
     public class SleepStatus : StatusEffect
     {
-        public SleepStatus() : base(5, 0, false, 0f)
+        public SleepStatus() : base(5, 5, false, 0f)
         {
             Status = StatusPotential.SLEEP;
         }
@@ -111,7 +111,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
     /// </summary>
     public class BurnStatus : StatusEffect
     {
-        public BurnStatus() : base(5, 10, true, 1/12)
+        public BurnStatus() : base(5, 5, true, 0)
         {
             Status = StatusPotential.BURN;
         }
@@ -130,7 +130,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
 
     public class PoisonStatus : StatusEffect
     {
-        public PoisonStatus() : base(8, 10, true, 1 / 16)
+        public PoisonStatus() : base(8, 4, true, 0)
         {
             Status = StatusPotential.POISON;
         }

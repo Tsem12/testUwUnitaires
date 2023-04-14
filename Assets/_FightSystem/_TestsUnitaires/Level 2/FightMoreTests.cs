@@ -123,7 +123,7 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
             Fight fight = new Fight(p1, p2);
             fight.PlayAttack(p1, p2, true);
 
-            Assert.That(p2.MaxHealth - ( Mathf.FloorToInt(1/12) * p2.MaxHealth) - 7 == p2.CurrentHealth);
+            Assert.That(p2.MaxHealth - 5 - 7 == p2.CurrentHealth);
         }
     }
 

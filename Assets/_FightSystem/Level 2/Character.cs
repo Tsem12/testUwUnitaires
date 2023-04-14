@@ -79,6 +79,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             CurrentHealth -= amount;
             if (CurrentHealth < 0)
                 CurrentHealth = 0;
+            //Debug.Log("Damage : " + amount + " Health : " + CurrentHealth);
         }
 
         public void ReceiveAttack(float amount)
@@ -88,6 +89,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             CurrentHealth -= Mathf.FloorToInt(amount);
             if (CurrentHealth < 0)
                 CurrentHealth = 0;
+            Debug.Log("Damage : " + amount + " Health : " + CurrentHealth);
         }
         
         public void ReceiveAttack(Skill s)
