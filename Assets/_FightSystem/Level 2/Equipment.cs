@@ -18,6 +18,14 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         private int _bonusSpeed;
         private EquipementType _equipement;
 
+        public Equipment(int bonusHealth, int bonusAttack, int bonusDefense, int bonusSpeed)
+        {
+            BonusAttack = bonusAttack;
+            BonusDefense = bonusDefense;
+            BonusSpeed = bonusSpeed;
+            BonusHealth = bonusHealth;
+        }
+
         public Equipment(int bonusHealth, int bonusAttack, int bonusDefense, int bonusSpeed, EquipementType equipement)
         {
             BonusAttack = bonusAttack;
