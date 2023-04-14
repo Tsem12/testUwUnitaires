@@ -68,7 +68,7 @@ public class SuperCat : Cat
 }
 
 
-public class Character : MonoBehaviour, IDamagable
+public class CharacterTest : MonoBehaviour, IDamagable
 {
 
     [SerializeField] IDamagable _d;
@@ -105,7 +105,7 @@ public class Character : MonoBehaviour, IDamagable
 
         }
 
-        // Mais on devrait faire ça
+        // Mais on devrait faire ï¿½a
         foreach (var el in Loto)
         {
             Debug.Log(el);
@@ -116,7 +116,7 @@ public class Character : MonoBehaviour, IDamagable
 
     private void OnTriggerEnter(Collider other)
     {
-        //other.GetComponent<Character>()?.Damage(12);
+        //other.GetComponent<CharacterTest>()?.Damage(12);
         //other.GetComponent<DestructibleObject>()?.Damage(12);
 
         
@@ -126,13 +126,13 @@ public class Character : MonoBehaviour, IDamagable
 
 
 
-        if (h is Character)
+        if (h is CharacterTest)
         {
 
         }
         switch (h)
         {
-            case Character character:
+            case CharacterTest character:
                 character.name = "";
                 break;
             case DestructibleObject desobject:

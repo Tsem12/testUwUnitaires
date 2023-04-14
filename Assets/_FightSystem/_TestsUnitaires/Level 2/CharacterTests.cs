@@ -117,7 +117,7 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
 
             pikachu.ReceiveAttack(punch); // hp : 40 => 10
             Assert.That(pikachu.CurrentHealth, Is.EqualTo(10));
-            Assert.That(pikachu.IsAlive, Is.EqualTo(false));
+            Assert.That(pikachu.IsAlive, Is.EqualTo(true));
 
             pikachu.ReceiveAttack(punch); // hp : 10 => 0
             Assert.That(pikachu.CurrentHealth, Is.EqualTo(0));
