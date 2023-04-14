@@ -1,4 +1,5 @@
 ﻿
+using _2023_GC_A2_Partiel_POO.Level_2;
 using System;
 
 namespace _2023_GC_A2_Partiel_POO.Level_2
@@ -78,23 +79,18 @@ public static class PokemonType
             //Attacking Type
       };
 
-      public static float GetEffectiveness(Type attackingType, Type[] defendingType)
+      public static float GetEffectiveness(TYPE attackingType, TYPE defendingType)
       {
             float effectiveness = 1f;
 
-            foreach (Type dType in defendingType) {
-                  if (dType == Type.NONE)
-                        continue;
-                  effectiveness *= _typeChart[(int)attackingType, (int)dType];
-            }
+            effectiveness *= _typeChart[(int)attackingType, (int)defendingType];
             return effectiveness;
       }
 
-      public static float GetSTAB(Type Move, Type[] pokemon)
+      public static float GetSTAB(TYPE Move, TYPE pokemon)
       {
-            foreach (Type pType in pokemon)
-                  if (pType == Move)
-                        return 1.5f;
+            if (pokemon == Move)
+                return 1.5f;
             return 1f;
       }
 }
