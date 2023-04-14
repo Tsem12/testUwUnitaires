@@ -3,7 +3,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
 {
     /// <summary>
     /// Défintion simple d'un équipement apportant des boost de stats
-    public enum EquipementType
+    public enum EquipementBonus
     {
         None,
         AttackPriority
@@ -16,7 +16,8 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         private int _bonusAttack;
         private int _bonusDefense;
         private int _bonusSpeed;
-        private EquipementType _eType = EquipementType.None;
+        private EquipementBonus _eBonus = EquipementBonus.None;
+        private TYPE _eType = TYPE.NORMAL;
 
         public Equipment(int bonusHealth, int bonusAttack, int bonusDefense, int bonusSpeed)
         {
@@ -26,16 +27,27 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             BonusHealth = bonusHealth;
         }
 
-        public Equipment(int bonusHealth, int bonusAttack, int bonusDefense, int bonusSpeed, EquipementType equipement)
+        public Equipment(int bonusHealth, int bonusAttack, int bonusDefense, int bonusSpeed, EquipementBonus equipement)
         {
             BonusAttack = bonusAttack;
             BonusDefense = bonusDefense;
             BonusSpeed = bonusSpeed;
             BonusHealth = bonusHealth;
-            EType = equipement;
+            EBonus = equipement;
         }
 
-        public EquipementType EType { get => _eType; protected set => _eType = value; }
+        public Equipment(TYPE type, int bonusHealth, int bonusAttack, int bonusDefense, int bonusSpeed, EquipementBonus equipement)
+        {
+            BonusAttack = bonusAttack;
+            BonusDefense = bonusDefense;
+            BonusSpeed = bonusSpeed;
+            BonusHealth = bonusHealth;
+            EBonus = equipement;
+            EType = type;
+        }
+
+        public EquipementBonus EBonus { get => _eBonus; protected set => _eBonus = value; }
+        public TYPE EType { get => _eType; protected set => _eType = value; }
         public int BonusHealth { get => _bonusHealth; protected set => _bonusHealth = value; }
         public int BonusAttack { get => _bonusAttack; protected set => _bonusAttack = value; }
         public int BonusDefense { get => _bonusDefense; protected set => _bonusDefense = value; }

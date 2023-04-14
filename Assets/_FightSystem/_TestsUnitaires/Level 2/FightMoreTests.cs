@@ -50,7 +50,7 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
         {
             Character p1 = new Character(100, 10, 10, p1Speed, TYPE.NONE);
             Character p2 = new Character(100, 10, 10, p2Speed, TYPE.NONE);
-            p1.Equip(new Equipment(0, 0, 0, 0, EquipementType.AttackPriority));
+            p1.Equip(new Equipment(0, 0, 0, 0, EquipementBonus.AttackPriority));
             Fight fight = new Fight(p1, p2);
 
             Assert.That(fight.IsPriority(fight.Character1, fight.Character2) == expected);
@@ -63,7 +63,7 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
         {
             Character p1 = new Character(100, 10, 10, p1Speed, TYPE.NONE);
             Character p2 = new Character(100, 10, 10, p2Speed, TYPE.NONE);
-            p1.Equip(new Equipment(0, 0, 0, 0, EquipementType.AttackPriority));
+            p1.Equip(new Equipment(0, 0, 0, 0, EquipementBonus.AttackPriority));
             p1.Unequip();
             Fight fight = new Fight(p1, p2);
 
