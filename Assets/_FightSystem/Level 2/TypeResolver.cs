@@ -46,17 +46,8 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         /// 1.0 if same type
         /// 1.2 if vulnerable
         /// </returns>
-        public static float GetFactor(TYPE attacker, TYPE receiver)
-        {
-            throw new NotImplementedException();
-        }
-
-    }
-}
-
-public static class PokemonType
-{
-    private static float[,] _typeChart = {
+        /// 
+        private static float[,] _typeChart = {
                          /*Normal    Fire     Water   Grass   Electric    Ice    Fighting  Poison   Ground   Flying   Psychic   Bug      Rock    Ghost    Dragon    Dark    Steel    Fairy  */ // Defensive Type
             /*Normal*/  {    1f   ,   1f   ,   1f   ,   1f   ,   1f    ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,  0.5f  ,   0f   ,   1f   ,   1f   ,  0.5f  ,   1f   },
             /*Fire*/    {    1f   ,  0.5f  ,  0.5f  ,   2f   ,   1f    ,   2f   ,   1f   ,   1f   ,   1f   ,   1f   ,   1f   ,   2f   ,  0.5f  ,   1f   ,  0.5f  ,   1f   ,   2f   ,   1f   },
@@ -78,19 +69,20 @@ public static class PokemonType
             /*Fairy*/   {    1f   ,  0.5f  ,   1f   ,   1f   ,   1f    ,   1f   ,   2f   ,  0.5f  ,   1f   ,   1f   ,   2f   ,   1f   ,   1f   ,   1f   ,   2f   ,   2f   ,  0.5f  ,   1f   }
             //Attacking Type
       };
-
-      public static float GetEffectiveness(TYPE attackingType, TYPE defendingType)
-      {
+        public static float GetFactor(TYPE attacker, TYPE receiver)
+        {
             float effectiveness = 1f;
 
-            effectiveness *= _typeChart[(int)attackingType, (int)defendingType];
+            effectiveness *= _typeChart[(int)attacker, (int)receiver];
             return effectiveness;
-      }
+        }
 
-      public static float GetSTAB(TYPE Move, TYPE pokemon)
-      {
+        public static float GetSTAB(TYPE Move, TYPE pokemon)
+        {
             if (pokemon == Move)
                 return 1.5f;
             return 1f;
-      }
+        }
+
+    }
 }
