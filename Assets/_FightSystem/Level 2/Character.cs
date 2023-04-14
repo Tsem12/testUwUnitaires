@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
 
 namespace _2023_GC_A2_Partiel_POO.Level_2
 {
@@ -11,6 +16,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         TYPE _baseType;
 
         Equipment _currentEquipement;
+        Skill _currentAttack;
 
         public Character(int baseHealth, int baseAttack, int baseDefense, int baseSpeed, TYPE baseType)
         {
@@ -21,42 +27,36 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
             _baseType = baseType;
             CurrentHealth = _baseHealth;
         }
-        /// <summary>
-        /// HP actuel du personnage
-        /// </summary>
+
         public int CurrentHealth { get; private set; }
         public TYPE BaseType { get => _baseType;}
-        /// <summary>
-        /// HPMax, prendre en compte base et equipement potentiel
-        /// </summary>
+
         public int MaxHealth {
             get { return _baseHealth + (_currentEquipement != null ? CurrentEquipment.BonusHealth : 0); }
         }
-        /// <summary>
-        /// ATK, prendre en compte base et equipement potentiel
-        /// </summary>
+
         public int Attack {
             get { return _baseAttack + (_currentEquipement != null ? CurrentEquipment.BonusAttack : 0); }
         }
-        /// <summary>
-        /// DEF, prendre en compte base et equipement potentiel
-        /// </summary>
+
         public int Defense {
             get { return _baseDefense + (_currentEquipement != null ? CurrentEquipment.BonusDefense : 0); }
         }
-        /// <summary>
-        /// SPE, prendre en compte base et equipement potentiel
-        /// </summary>
+
         public int Speed {
             get { return _baseSpeed + (_currentEquipement != null ? CurrentEquipment.BonusSpeed : 0); }
         }
-        /// <summary>
-        /// Equipement unique du personnage
-        /// </summary>
+
         public Equipment CurrentEquipment { 
             get { return _currentEquipement; }
             private set { _currentEquipement = value; }
         }
+
+        public Skill CurrentAttack {
+            get { return _currentAttack; }
+            set { _currentAttack = value; }
+        }
+
         /// <summary>
         /// null si pas de status
         /// </summary>
@@ -74,7 +74,28 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         /// <exception cref="NotImplementedException"></exception>
         public void ReceiveAttack(Skill s)
         {
-            throw new NotImplementedException();
+            int damage = 0;
+
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+            damage = (s.Power - this.Defense) < 0 ? 0 : (s.Power - this.Defense);
+            CurrentHealth -= damage;
+            Debug.Log("Damage : " + damage + " Health : " + CurrentHealth);
+            if (CurrentHealth < 0)
+                CurrentHealth = 0;
+        }
+
+        public void ReceiveAttack(Skill s, int attack)
+        {
+            int damage = 0;
+
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+            damage = (s.Power * (int)(attack / this.Defense ));
+            CurrentHealth -= damage;
+            Debug.Log("Damage : " + damage + " Health : " + CurrentHealth);
+            if (CurrentHealth < 0)
+                CurrentHealth = 0;
         }
         /// <summary>
         /// Equipe un objet au personnage
